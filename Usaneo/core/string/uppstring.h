@@ -17,7 +17,6 @@ template <typename Element>
 struct StrRange {
 	const Element* c_str;
 	size_t len;
-
 	explicit StrRange(const Element* c_str, size_t len) : c_str(c_str), len(len) {};
 	explicit StrRange(const Element* c_str) : c_str(c_str), len(strleng(c_str)) {};
 	explicit StrRange(const Element* c_str, const Element* end) : c_str(c_str), len(end - c_str) {};
@@ -25,8 +24,8 @@ struct StrRange {
 
 class String {
 	public:
-	char16_t* data;
-	size_t length;
+		static const char32_t _null;
+		static const char32_t _replacement;
 };
 public:
 	String() : data(nullptr), length(0) {}

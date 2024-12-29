@@ -21,10 +21,44 @@
     <ClCompile Include="MultiRenderingSP.cpp">
       <Filter>File di risorse</Filter>
     </ClCompile>
+    <ClCompile Include="Pipeline.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="core\modules\opengl2\opengl2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="core\string\Uppstring.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MultiRenderingSP.hpp">
       <Filter>File di risorse</Filter>
     </ClInclude>
+    <ClInclude Include="Pipeline.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>File di risorse</Filter>
+    </ClInclude>
+    <ClInclude Include="Intestazione.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="core\os\os.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="core\string\uppstring.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2_image.dll" />
+    <None Include="libwebpdemux-2.dll" />
+    <None Include="libwebp-7.dll" />
+    <None Include="libtiff-5.dll" />
+    <None Include="libavif-16.dll" />
   </ItemGroup>
 </Project>
