@@ -1,8 +1,6 @@
 #ifndef OS_H 
 #define OS_H
-#include "core/string/uppstring.h"
-#include <stdlib.h>
-
+#include "stdlib.h"
 class OS {
 	static OS* singleton;
 public:
