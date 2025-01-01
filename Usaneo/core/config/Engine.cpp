@@ -1,6 +1,5 @@
+
 #include <SDL.h>
-#include "glad/glad.h"
-#include <SFML/Graphics.hpp>
 int main(int argc, char* argv[])
 {
 	SDL_Init(SDL_INIT_VIDEO);

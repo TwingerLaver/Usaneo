@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\config\Engine.cpp" />
+    <ClCompile Include="core\loader\LoaderGlad.cpp" />
+    <ClCompile Include="core\loader\sfmL_loader.cpp" />
+    <ClCompile Include="core\modules\opengl2\opengl2.cpp" />
+    <ClCompile Include="core\Rendering\Pipeline.cpp" />
+    <ClCompile Include="core\string\string_name.cpp" />
+    <ClCompile Include="core\string\Uppstring.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\config\Engine.h" />
+    <ClInclude Include="core\loader\sfml_loader.h" />
+    <ClInclude Include="core\os\os.h" />
+    <ClInclude Include="core\Rendering\Pipeline.h" />
+    <ClInclude Include="core\string\string_name.h" />
+    <ClInclude Include="core\string\uppstring.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -98,12 +115,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SFML-2.6.2\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\glad\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\core;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2_image-2.8.3\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2-2.30.10\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\glad\src;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SFML-2.6.2\lib;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2_image-2.8.3\lib\x64;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2-2.30.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +138,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Francesco\OneDrive\Documenti\SFML-2.6.2\lib;C:\Users\Francesco\OneDrive\Documenti\glad\src;C:\Users\Francesco\OneDrive\Documenti\SDL2_image-2.8.3\lib\x64;C:\Users\Francesco\OneDrive\Documenti\SDL2-2.30.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,43 +149,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Francesco\OneDrive\Documenti\SFML-2.6.2\include;C:\Users\Francesco\OneDrive\Documenti\glad\include;C:\Users\Francesco\OneDrive\Documenti\SDL2_image-2.8.3\include;C:\Users\Francesco\OneDrive\Documenti\SDL2-2.30.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SFML-2.6.2\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\glad\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\core;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2_image-2.8.3\include;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2-2.30.10\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Francesco\OneDrive\Documenti\SFML-2.6.2\lib;C:\Users\Francesco\OneDrive\Documenti\glad\src;C:\Users\Francesco\OneDrive\Documenti\SDL2_image-2.8.3\lib\x64;C:\Users\Francesco\OneDrive\Documenti\SDL2-2.30.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\glad\src;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SFML-2.6.2\lib;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2_image-2.8.3\lib\x64;C:\Users\Francesco\Desktop\Project\IT\Usaneo\Usaneo\thirdparty\modules\SDL2-2.30.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="core\config\Engine.cpp" />
-    <ClCompile Include="core\loader\LoaderGlad.cpp" />
-    <ClCompile Include="core\modules\opengl2\opengl2.cpp" />
-    <ClCompile Include="core\Rendering\Pipeline.cpp" />
-    <ClCompile Include="core\string\string_name.cpp" />
-    <ClCompile Include="core\string\Uppstring.cpp" />
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="MultiRenderingSP.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="libavif-16.dll" />
-    <None Include="libtiff-5.dll" />
-    <None Include="libwebp-7.dll" />
-    <None Include="libwebpdemux-2.dll" />
-    <None Include="README.md" />
-    <None Include="SDL2_image.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="core\config\Engine.h" />
-    <ClInclude Include="core\os\os.h" />
-    <ClInclude Include="core\Rendering\Pipeline.h" />
-    <ClInclude Include="core\string\string_name.h" />
-    <ClInclude Include="core\string\uppstring.h" />
-    <ClInclude Include="MultiRenderingSP.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
