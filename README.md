@@ -1,15 +1,15 @@
 # Usaneo Multiplatform 2D & 3D Game Engine
 
 # Current Limitations Engine Or Function is not Implemented
-* UI
-* Animation
-* Physics
-* Multiplayer
-* Networking
-* Rendering
-* Input
-* Graphics
-* Audio
+- [ ] UI
+- [ ] Animation
+- [ ] Physics
+- [ ] Multiplayer
+- [ ] Networking
+- [ ] Rendering
+- [ ] Input
+- [ ] Graphics
+- [ ] Audio
 
 
 # How to Contribute Engine?
