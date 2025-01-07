@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL_image.h>
 #include "core/utils/LoaderTexture.h"
+#include "SDL2/SDL_ttf.h"
 const int _WIDTH = 650;
 const int _HEIGHT = 512;
 int main(int argc, char* argv[]) {
@@ -22,8 +23,6 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    
-    // Using Default Surface after Load Call update_Image_Screen(); and working All Project
     SDL_RenderClear(render);
     SDL_RenderPresent(render);
     return 0;
