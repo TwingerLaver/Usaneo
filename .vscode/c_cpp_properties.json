@@ -8,7 +8,9 @@
                 "${workspaceFolder}/src/SFML/lib",
                 "${workspaceFolder}/src/include",
                 "${workspaceFolder}/src/glad/include",
-                "${workspaceFolder}/core/imports"
+                "${workspaceFolder}/core/imports",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/core/include"
             ],
             "defines": [
                 "_DEBUG",

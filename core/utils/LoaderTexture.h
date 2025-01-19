@@ -13,7 +13,7 @@ class LoadTexture {
     bool load_texture(const std::string& filepath){
         texture = IMG_LoadTexture(render, filepath.c_str());
         if(!texture){ 
-            std::cerr <<"Error" << IMG_GetError << std::endl;
+            std::cerr << "Error" << IMG_GetError << std::endl;
             return false;
         }
         return true;
