@@ -48,3 +48,6 @@ int InputManager::GetMouseX() const  {
 bool InputManager::QuitRequested () const {
     return QuitRequest;
 }
+bool InputManager::Quit(int key){
+     SDL_Quit();
+}

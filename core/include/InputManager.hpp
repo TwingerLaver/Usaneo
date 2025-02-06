@@ -9,8 +9,7 @@
 #define W_KEY SDLK_w
 #define A_KEY SDLK_a
 #define E_Key SDLK_e
-
-
+#define QUIT SDLK_F4
 
 class InputManager {
     public: 
@@ -19,14 +18,14 @@ class InputManager {
     bool KeyPress(int key);
     bool KeyRelease(int key);
     bool IsKeyDown(int key);
-
+    bool Quit(int key);
     bool MousePress(int button) const;
     bool MouseRelease(int button) const;
     bool IsMouseButtonDown(int button) const;
 
     int GetMouseX() const;
     int GetMouseY() const;
-
+    
     bool QuitRequested() const;
     
     static InputManager& GetInstance();
