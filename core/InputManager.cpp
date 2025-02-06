@@ -38,6 +38,9 @@ void InputManager::Update() {
 bool InputManager::MousePress(int button) const {
     return mouseState[button] && (mouseUpdate[button] != UpdaterCounter);
 }
+bool InputManager::Quit(int key){
+    return KeyQuit;
+}
 bool InputManager::IsKeyDown(int key) { 
     return keyState[key];
 }
@@ -47,7 +50,4 @@ int InputManager::GetMouseX() const  {
 
 bool InputManager::QuitRequested () const {
     return QuitRequest;
-}
-bool InputManager::Quit(int key){
-     SDL_Quit();
 }
