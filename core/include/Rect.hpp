@@ -10,17 +10,17 @@ class Rect {
     Rect GetCentered(float x, float y) const;
     float Distance(const Rect& rect) const;
     bool Contains(const Vector2& point) const;
-
+    Rect GetLastPosition();
     Rect& operator+=(const Rect& rect);
     Rect& operator=(const Rect& rect);
 
     friend Rect operator+(Rect lhs, const Vector2& rhs) { 
-        lhs += rhs;
+        // Not Defined
         return lhs;
     }
     const std::string& ToString() const {
         return std::string("x:") + std::to_string(x) + std::string(" y:") + std::to_string(y)
-        + std::string(" w:") + std::to_string(w) + std::string(" h:") + std::to_string(h) + std::string(" center: ") + Center.ToString();
+        + std::string(" w:") + std::to_string(w) + std::string(" h:") + std::to_string(h) + std::string(" center: ");
     }
     float x;
     float y;

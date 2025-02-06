@@ -5,7 +5,6 @@
 
 
 InputManager InputManager::instance;
-
 InputManager& InputManager::GetInstance() {
     return instance;
 }
@@ -22,7 +21,6 @@ void InputManager::Update() {
     UpdaterCounter += 1;
     
     SDL_GetMouseState(&MouseX, &MouseY);
-
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT) { 
             QuitRequest = true;
