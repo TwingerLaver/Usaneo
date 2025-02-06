@@ -3,18 +3,24 @@
 #include <SDL2/SDL_image.h>
 #include "core/utils/LoaderTexture.h"
 #include "SDL2/SDL_ttf.h"
+#include <core/maths/maths.h>
 #include "core/include/InputManager.hpp"
 #define RQUIT SDLK_DELETE
-
 void use_windows() {
-     #ifdef USE_WINDOWS
-     SDL_Rect rect;
      
-     #endif
 }
-void debug(){
-    // Add Debug Mode
+
+void debug(SDL_Renderer* renderer){
     
+    // Add Debug Mode
+    SDL_Rect RCDebug;
+    RCDebug.w = 75;
+    RCDebug.h = 86;
+    RCDebug.x = 0.0;
+    RCDebug.y = 0.7;
+
+    SDL_SetRenderDrawColor(renderer, 180, 212, 188, 100);
+    SDL_RenderFillRect(renderer, &RCDebug);
 }
 const int _WIDTH = 650;
 const int _HEIGHT = 512;
@@ -41,8 +47,9 @@ int main(int argc, char* argv[]) {
                 quit = true;
             }
         }
+        debug(render); // Target Render on Rect Debug
     }
-
+    
     SDL_RenderClear(render);
     SDL_RenderPresent(render);
     return 0;
