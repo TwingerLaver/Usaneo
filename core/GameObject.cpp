@@ -6,3 +6,6 @@ GameObject::GameObject(double priority) : isStarted(false), angleDrag(0), priori
 GameObject::~GameObject() { 
     
 }
+void GameObject::RemoveComponent(){
+    
+}

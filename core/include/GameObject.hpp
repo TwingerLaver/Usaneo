@@ -14,7 +14,7 @@ class GameObject {
     void Render(); 
     void Start(); 
     void AddComponent();
-
+    void RemoveComponent();
     std::weak_ptr<Component> GetComponet(GameData::Types types);
 
     Rect box;

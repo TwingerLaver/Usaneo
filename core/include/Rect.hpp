@@ -13,7 +13,7 @@ class Rect {
     Rect GetLastPosition();
     Rect& operator+=(const Rect& rect);
     Rect& operator=(const Rect& rect);
-
+    void Destroy_Object();
     friend Rect operator+(Rect lhs, const Vector2& rhs) { 
         // Not Defined
         return lhs;
