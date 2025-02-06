@@ -33,6 +33,9 @@ void InputManager::Update() {
             keyState[event.key.keysym.sym] = event.type == SDL_KEYDOWN;
             KeyUpdate[event.key.keysym.sym] = UpdaterCounter;
         }
+        if (event.type == SDLK_F4){
+            KeyQuit[1] = event.type == SDLK_LSHIFT * SDLK_F4;
+        }
     }
 }
 bool InputManager::MousePress(int button) const {
