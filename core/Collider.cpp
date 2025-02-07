@@ -11,7 +11,7 @@ Collider::Collider(GameObject& assc, Vector2 scale, Vector2 offset) : Component(
 
 }
 void Collider::Update(float dt) {
-
+    // TODO: Implementing Dt Updating Colliding 
 }
 
 bool Collider::Is(GameData::Types types) const {

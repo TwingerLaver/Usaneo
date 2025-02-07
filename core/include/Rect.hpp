@@ -10,7 +10,6 @@ class Rect {
     Rect GetCentered(float x, float y) const;
     float Distance(const Rect& rect) const;
     bool Contains(const Vector2& point) const;
-    Rect GetLastPosition();
     Rect& operator+=(const Rect& rect);
     Rect& operator=(const Rect& rect);
     void Destroy_Object();
@@ -25,6 +24,7 @@ class Rect {
     float x;
     float y;
     float w;
+    
     float h;
 };
 #endif

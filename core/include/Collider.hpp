@@ -19,6 +19,5 @@ class Collider : public Component {
     private:
     Vector2 scale;
     Vector2 offset;
-    
 };
 #endif 

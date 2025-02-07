@@ -3,11 +3,9 @@
 
 
 #include <string>
-
+#include <iostream>
 class Vector2 {
-    public: 
-    Vector2();
-
+    public:
     Vector2(float x, float y);
     Vector2 GetNormalized() const;
     Vector2 GetRotated(const float& dd) const;
@@ -37,9 +35,13 @@ class Vector2 {
         return rhs;
     }
     std::string ToString() const {
-        return std::to_string(X) + " " + std::to_string(Y);
+        return std::to_string(x) + " " + std::to_string(y);
     }
-    float X;
-    float Y;
+    Vector2 Global_pos() const {
+        return *this;
+    }
+
+    float x;
+    float y;
 };
 #endif
