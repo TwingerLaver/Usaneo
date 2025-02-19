@@ -25,7 +25,7 @@
 1. Clone the repository on your local machine.
 2. Install the required dependencies using SDL 2. 
 ```cmd
-g++ -I src/include -L src/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2
+make
 ```
 3. Run the engine using the compiled executable.
 
