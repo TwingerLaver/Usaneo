@@ -1,2 +1,12 @@
+PROJECTNAME = usaneo
+OUTPUT_DIR = build
+
+INCLUDE_DIRS = -Iinclude -Iinclude/imgui
+LIB_DIRS = -Llib
+LIBS = -lmingw32 -lSDL2main -lSDL2
+
+SRC = $(wildcard src/*.cpp) $(wildcard imgui/*.cpp)
+
 all:
-	g++ -Isrc/include -Lsrc/lib -o main Engine.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+	mkdir -p $(OUTPUT_DIR)
+	g++ $(SRC) -o $(OUTPUT_DIR)/$(PROJECTNAME).exe $(INCLUDE_DIRS) $(LIB_DIRS) $(LIBS)
