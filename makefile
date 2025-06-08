@@ -3,7 +3,7 @@ OUTPUT_DIR = build
 
 INCLUDE_DIRS = -Iinclude -Iinclude/imgui
 LIB_DIRS = -Llib
-LIBS = -lmingw32 -lSDL2main -lSDL2
+LIBS = -lmingw32 -lSDL2main -lSDL2 -LSDL2_image -lSDL2_mixer
 
 SRC = $(wildcard src/*.cpp) $(wildcard imgui/*.cpp)
 

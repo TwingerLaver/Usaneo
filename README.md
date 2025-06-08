@@ -1,4 +1,4 @@
-# Usaneo Multiplatform 2D & 3D Game Engine
+# Usaneo Multiplatform 2D Engine
 
 # Current Limitations Engine Or Function is not Implemented
 - [ ] UI
