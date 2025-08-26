@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        ".vert": "glsl",
+        ".frag": "glsl",
+        "sdl.h": "c",
+        "stdio.h": "c"
+    }
+}

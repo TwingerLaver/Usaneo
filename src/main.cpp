@@ -1,69 +1,111 @@
-#include <imgui.h>
-#include <imgui_impl_sdl2.h>
-#include <imgui_impl_sdlrenderer2.h>
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <iostream>
-int main(int argc, char* argv[]) {
-   
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
+#define SDL_MAIN_HANDLED
+#include <SDL2/SDL.h>
+#include "rendering/OpenGL/RendererOpenGL.h"
+#include "rendering/OpenGL/2d/2d_camera.h"
+#include <stdio.h>
+
+int main() {
+    // initialize SDL
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        printf("SDL Init failed: %s\n", SDL_GetError());
         return -1;
     }
-      if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        std::cerr << "Mix_OpenAudio Error: " << Mix_GetError() << std::endl;
-    }
 
-    SDL_Window* window = SDL_CreateWindow("Usaneo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 600, SDL_WINDOW_SHOWN);
+    // set attribute OpenGL
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    if(!window){
+    const int WINDOW_WIDTH = 800;
+    const int WINDOW_HEIGHT = 600;
+
+    SDL_Window* window = SDL_CreateWindow(
+        "Usaneo - Camera Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL
+    );
+    if (!window) {
+        printf("SDL CreateWindow failed: %s\n", SDL_GetError());
         SDL_Quit();
         return -1;
     }
-    SDL_Renderer* render = SDL_CreateRenderer(window, -1, 0);
-    std::string basePath = SDL_GetBasePath();
-    if(!render){
+    RendererOpenGL renderer(window);
+    if (!renderer.Init()) {
+        printf("OpenGL initialization failed\n");
         SDL_DestroyWindow(window);
         SDL_Quit();
         return -1;
     }
-    std::string soundPath = basePath + "soundscrate-SciFi_Weapon_Blast_10.wav";
-    Mix_Chunk* sound = Mix_LoadWAV(soundPath.c_str());
-    // initialize ImGui
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui_ImplSDL2_InitForSDLRenderer(window, render);
-    ImGui_ImplSDLRenderer2_Init(render);
-    bool running = true;
-    SDL_Event e; 
-    while(running) {
 
-        while(SDL_PollEvent(&e)) {
-            if(e.type == SDL_QUIT){ 
+    printf("OpenGL %d.%d\n", GLVersion.major, GLVersion.minor);
+
+    // crate and configure camera
+    Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));  
+    renderer.SetCamera(&camera);
+    renderer.UpdateWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+ 
+    Uint32 lastTime = SDL_GetTicks();
+    float deltaTime = 0.0f;
+
+   
+    bool firstMouse = true;
+    float lastX = WINDOW_WIDTH / 2.0f;
+    float lastY = WINDOW_HEIGHT / 2.0f;
+
+    
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
+    bool running = true;
+    SDL_Event event;
+    
+    while (running) {
+
+        Uint32 currentTime = SDL_GetTicks();
+        deltaTime = (currentTime - lastTime) / 1000.0f;
+        lastTime = currentTime;
+
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
                 running = false;
             }
-
-            if(e.type == SDL_MOUSEBUTTONUP) { 
-                Mix_PlayChannel(-1, sound, 0);
+            else if (event.type == SDL_KEYDOWN) {
+                if (event.key.keysym.sym == SDLK_ESCAPE) {
+                    running = false;
+                }
             }
-            ImGui_ImplSDL2_ProcessEvent(&e);
+            else if (event.type == SDL_MOUSEMOTION) {
+                float xoffset = event.motion.xrel;
+                float yoffset = -event.motion.yrel; 
+                camera.ProcessMouseMovement(xoffset, yoffset);
+            }
+            else if (event.type == SDL_MOUSEWHEEL) {
+                camera.ProcessMouseScroll(event.wheel.y);
+            }
         }
-        ImGui_ImplSDLRenderer2_NewFrame();
-        ImGui_ImplSDL2_NewFrame();
-        ImGui::NewFrame();
-        ImGui::Begin("Tesrt");
-        ImGui::Text("Hello, world!");
-        ImGui::End();
-        ImGui::Text("Fps: %.1f", ImGui::GetIO().Framerate);
-        ImGui::Render();
-        SDL_SetRenderDrawColor(render, 0, 0, 1, 255); 
-        SDL_RenderClear(render);
-        ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), render);
-        SDL_RenderPresent(render);
+
+        const Uint8* keystate = SDL_GetKeyboardState(NULL);
+        
+        if (keystate[SDL_SCANCODE_W])
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        if (keystate[SDL_SCANCODE_S])
+            camera.ProcessKeyboard(BACKWARD, deltaTime);
+        if (keystate[SDL_SCANCODE_A])
+            camera.ProcessKeyboard(LEFT, deltaTime);
+        if (keystate[SDL_SCANCODE_D])
+            camera.ProcessKeyboard(RIGHT, deltaTime);
+        if (keystate[SDL_SCANCODE_Q])
+            camera.ProcessKeyboard(UP, deltaTime);
+        if (keystate[SDL_SCANCODE_E])
+            camera.ProcessKeyboard(DOWN, deltaTime);
+
+        // Render
+        renderer.Clear({0.3f, 0.3f, 0.5f, 1.0f});
+        renderer.DrawTriangle(nullptr, 3);
+        renderer.Present();
     }
-    ImGui_ImplSDLRenderer2_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
-    SDL_DestroyRenderer(render);
+
+    renderer.Cleanup();
     SDL_DestroyWindow(window);
     SDL_Quit();
+    return 0;
 }

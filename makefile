@@ -1,12 +1,44 @@
-PROJECTNAME = usaneo
-OUTPUT_DIR = build
+# Compiler
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
-INCLUDE_DIRS = -Iinclude -Iinclude/imgui
-LIB_DIRS = -Llib
-LIBS = -lmingw32 -lSDL2main -lSDL2 -LSDL2_image -lSDL2_mixer
+# Directories
+SRC_DIR = src
+BUILD_DIR = build
+INCLUDE_DIR = include
+RENDERING_DIR = rendering/OpenGL
 
-SRC = $(wildcard src/*.cpp) $(wildcard imgui/*.cpp)
+# Include paths
+INCLUDES = -I$(INCLUDE_DIR) -I.
 
-all:
-	mkdir -p $(OUTPUT_DIR)
-	g++ $(SRC) -o $(OUTPUT_DIR)/$(PROJECTNAME).exe $(INCLUDE_DIRS) $(LIB_DIRS) $(LIBS)
+# Library paths and libraries
+LIB_DIR = lib
+LIBS = -L$(LIB_DIR) -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lopengl32
+
+# Source files
+SOURCES = $(SRC_DIR)/main.cpp \
+          $(INCLUDE_DIR)/glad.c \
+          $(RENDERING_DIR)/RendererOpenGL.cpp \
+          $(RENDERING_DIR)/2d/2d_camera.cpp
+
+# Target
+TARGET = $(BUILD_DIR)/usaneo.exe
+
+# Default target
+all: $(TARGET)
+
+$(TARGET): $(SOURCES) | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET) $(INCLUDES) $(LIBS)
+
+# Create build directory
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Clean target
+clean:
+	rm -rf $(BUILD_DIR)
+
+# Rebuild target
+rebuild: clean all
+
+.PHONY: all clean rebuild
